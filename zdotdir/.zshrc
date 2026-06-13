@@ -11,11 +11,11 @@ eval "$(starship init zsh)"
 # 
 # asdf
 # 
-. "$HOME/.asdf/asdf.sh"
+#. "$HOME/.asdf/asdf.sh"
 # append completions to fpath
-fpath=(${ASDF_DIR}/completions $fpath)
+#fpath=(${ASDF_DIR}/completions $fpath)
 # initialise completions with ZSH's compinit
-autoload -Uz compinit && compinit
+#autoload -Uz compinit && compinit
 
 # 
 # pnpm
@@ -60,7 +60,7 @@ setopt HIST_BEEP              # Beep when accessing non-existent history.
 #
 # kubectl
 #
-source <(kubectl completion zsh)
+#source <(kubectl completion zsh)
 
 function _fzf_kubectl_pod_describe() {
   local selection=`kubectl get pods -A | fzf --header-lines=1 --query="$*" --select-1 -e `
@@ -75,3 +75,8 @@ function _fzf_kubectl_pod_describe() {
 }
 
 alias kcdpod=_fzf_kubectl_pod_describe
+
+#
+# fzf
+#
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
