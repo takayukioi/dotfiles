@@ -55,6 +55,9 @@ M.setup = function()
 			{ Text = SOLID_RIGHT_ARROW },
 			{ Foreground = { Color = edgeclr } },
 			{ Text = SOLID_LEFT_ARROW },
+			{ Foreground = { Color = edgeclr } },
+			{ Background = { Color = edgeclr } },
+			{ Text = SOLID_LEFT_ARROW },
 		}))
 	end)
 end
