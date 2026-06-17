@@ -12,7 +12,7 @@ require('utils.backdrops')
 -- === Appearance ===
 local gpu_adapters = require("utils.gpu-adapter")
 local backdrops = require("utils.backdrops")
-local colors = require("colors.custom")
+local colors = require("colors.kanagawa").colors
 local appearance = {
 	max_fps = 120,
 	front_end = "WebGpu", ---@type 'WebGpu' | 'OpenGL' | 'Software'
@@ -29,6 +29,7 @@ local appearance = {
 
 	-- color scheme
 	colors = colors,
+   -- color_scheme = 'kanagawabones',
 
 	-- background: pass in `true` if you want wezterm to start with focus mode on (no bg images)
 	background = backdrops:initial_options({ no_img = false }),
@@ -61,16 +62,10 @@ local appearance = {
 	window_close_confirmation = "NeverPrompt",
 	window_frame = {
 		active_titlebar_bg = "#090909",
-		-- font = fonts.font,
-		-- font_size = fonts.font_size,
 	},
-	-- inactive_pane_hsb = {
-	--    saturation = 0.9,
-	--    brightness = 0.65,
-	-- },
 	inactive_pane_hsb = {
-		saturation = 1,
-		brightness = 1,
+	   saturation = 0.3,
+	   brightness = 0.3,
 	},
 
 	visual_bell = {
