@@ -1,5 +1,6 @@
 local wezterm = require("wezterm")
 local platform = require("utils.platform")
+local workspace = require("utils.workspace")
 
 require('events.tab-title').setup()
 require('events.right-status').setup()
@@ -207,6 +208,7 @@ elseif platform.is_win or platform.is_linux then
 end
 
 -- stylua: ignore
+local leader = { key = "Space", mods = mod.SUPER }
 local keys = {
    -- misc/useful --
    { key = 'v', mods = 'LEADER', action = act.ActivateCopyMode },
@@ -405,6 +407,31 @@ local keys = {
    { key = 'PageUp',   mods = 'NONE',    action = act.ScrollByPage(-0.75) },
    { key = 'PageDown', mods = 'NONE',    action = act.ScrollByPage(0.75) },
 
+   -- workspace --
+   {
+      key = 'm',
+      mods = mod.SUPER,
+      action = act.PromptInputLine {
+         description = "(wezterm) Create new workspace:",
+         action = wezterm.action_callback(workspace.create_workspace)
+      }
+   },
+   {
+      key = 'm',
+      mods = 'CTRL|SHIFT',
+      action = wezterm.action_callback(workspace.switch_workspace)
+   },
+   {
+      key = 'n',
+      mods = 'CTRL|SHIFT',
+      action = act.SwitchWorkspaceRelative(1)
+   },
+   {
+      key = 'p',
+      mods = 'CTRL|SHIFT',
+      action = act.SwitchWorkspaceRelative(-1)
+   },
+   
    -- key-tables --
    -- resizes fonts
    {
@@ -459,7 +486,7 @@ local mouse_bindings = {
 local bindings = {
 	disable_default_key_bindings = true,
 	-- disable_default_mouse_bindings = true,
-	leader = { key = "Space", mods = mod.SUPER },
+	leader = leader,
 	keys = keys,
 	key_tables = key_tables,
 	mouse_bindings = mouse_bindings,
