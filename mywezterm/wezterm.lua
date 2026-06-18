@@ -1,9 +1,11 @@
 local wezterm = require("wezterm")
 local platform = require("utils.platform")
 local workspace = require("utils.workspace")
+local colors = require("colors.kanagawa").colors
+local wave = require("colors.kanagawa").wave
 
-require('events.tab-title').setup()
-require('events.right-status').setup()
+require('events.tab-title').setup(wave)
+require('events.right-status').setup(wave)
 
 require('utils.backdrops')
    :scan_images_dir()
@@ -12,7 +14,6 @@ require('utils.backdrops')
 -- === Appearance ===
 local gpu_adapters = require("utils.gpu-adapter")
 local backdrops = require("utils.backdrops")
-local colors = require("colors.kanagawa").colors
 local appearance = {
 	max_fps = 120,
 	front_end = "WebGpu", ---@type 'WebGpu' | 'OpenGL' | 'Software'

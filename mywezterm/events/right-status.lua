@@ -4,25 +4,28 @@ local SOLID_LEFT_ARROW = utf8.char(0xe0ba)
 local SOLID_RIGHT_ARROW = utf8.char(0xe0bc)
 
 local M = {}
-M.setup = function()
+M.setup = function(color)
 	wezterm.on("update-right-status", function(window, pane)
 		local key_table = window:active_key_table()
 		if key_table == nil then
 			key_table = " "
+		else
+			key_table = " " .. key_table .. " "
 		end
+
 		local leader = " leader "
 		if window:leader_is_active() == false then
 			leader = " "
 		end
 		local workspace = " " .. wezterm.mux.get_active_workspace() .. " "
-		local time = wezterm.strftime '%b %-d %H:%M'
+		local time = wezterm.strftime("%b %-d %H:%M")
 
-		local ktclr = '#89b4fa'
-		local ldclr = '#cba6f7'
-		local wsclr = '#a6e3a1'
-		local timeclr = '#f9e2af'
-		local edgeclr = '#f38ba8'
-		local txtclr = '#1f1f28'
+		local ktclr = color.ansi.blue
+		local ldclr = color.ansi.magenta
+		local wsclr = color.bright.green
+		local timeclr = color.bright.yellow
+		local edgeclr = color.ansi.red
+		local txtclr = color.background
 
 		window:set_right_status(wezterm.format({
 			{ Foreground = { Color = ktclr } },
@@ -63,3 +66,4 @@ M.setup = function()
 end
 
 return M
+
