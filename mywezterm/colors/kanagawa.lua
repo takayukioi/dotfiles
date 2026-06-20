@@ -22,6 +22,7 @@ M.wave = {
 		cyan = "#7aa89f", -- bright cyan
 		white = "#dcd7ba", -- bright white
 	},
+	peachRed = '#FF5D62',
 }
 
 M.colors = {

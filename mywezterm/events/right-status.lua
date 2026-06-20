@@ -24,7 +24,7 @@ M.setup = function(color)
 		local ldclr = color.ansi.magenta
 		local wsclr = color.bright.green
 		local timeclr = color.bright.yellow
-		local edgeclr = color.ansi.red
+		local edgeclr = color.peachRed
 		local txtclr = color.background
 
 		window:set_right_status(wezterm.format({
