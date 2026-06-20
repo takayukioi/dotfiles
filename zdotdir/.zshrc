@@ -80,3 +80,4 @@ alias kcdpod=_fzf_kubectl_pod_describe
 # fzf
 #
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+eval "$(~/.local/bin/mise activate zsh)"
