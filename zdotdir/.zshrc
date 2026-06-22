@@ -9,15 +9,6 @@ eval "$(sheldon source)"
 eval "$(starship init zsh)"
 
 # 
-# asdf
-# 
-#. "$HOME/.asdf/asdf.sh"
-# append completions to fpath
-#fpath=(${ASDF_DIR}/completions $fpath)
-# initialise completions with ZSH's compinit
-#autoload -Uz compinit && compinit
-
-# 
 # pnpm
 # 
 export PNPM_HOME="$HOME/.local/share/pnpm"
@@ -58,26 +49,30 @@ setopt HIST_BEEP              # Beep when accessing non-existent history.
 # fi
 
 #
-# kubectl
-#
-#source <(kubectl completion zsh)
-
-function _fzf_kubectl_pod_describe() {
-  local selection=`kubectl get pods -A | fzf --header-lines=1 --query="$*" --select-1 -e `
-  if [ $selection = "" ]; then
-    return 0
-  fi
-
-  local namespace=`echo $selection | awk '{ print $1 }'`
-  local pod=`echo $selection | awk '{ print $2 }'`
-
-  print -z "kubectl describe pod ${pod} -n ${namespace}"
-}
-
-alias kcdpod=_fzf_kubectl_pod_describe
-
-#
 # fzf
 #
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+#
+# mise
+#
 eval "$(~/.local/bin/mise activate zsh)"
+
+#
+# kubectl
+#
+#source <(kubectl completion zsh)
+#
+# function _fzf_kubectl_pod_describe() {
+#   local selection=`kubectl get pods -A | fzf --header-lines=1 --query="$*" --select-1 -e `
+#   if [ $selection = "" ]; then
+#     return 0
+#   fi
+#
+#   local namespace=`echo $selection | awk '{ print $1 }'`
+#   local pod=`echo $selection | awk '{ print $2 }'`
+#
+#   print -z "kubectl describe pod ${pod} -n ${namespace}"
+# }
+#
+# alias kcdpod=_fzf_kubectl_pod_describe
