@@ -1,3 +1,6 @@
+git:
+  overrideGpg: true
+
 customCommands:
   # retrieved from: https://github.com/jesseduffield/lazygit/wiki/Custom-Commands-Compendium#conventional-commit
   - key: "<c-v>"
@@ -50,7 +53,7 @@ customCommands:
         title: "Breaking change"
         options:
           - name: "no"
-            value: ""
+            value: " "
           - name: "yes"
             value: "!"
       - type: "input"
