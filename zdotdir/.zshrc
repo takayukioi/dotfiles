@@ -1,3 +1,6 @@
+autoload -Uz compinit
+compinit
+
 #
 # sheldon
 # 
@@ -7,15 +10,6 @@ eval "$(sheldon source)"
 # starship
 # 
 eval "$(starship init zsh)"
-
-# 
-# pnpm
-# 
-export PNPM_HOME="$HOME/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
 
 #
 # history
@@ -54,25 +48,8 @@ setopt HIST_BEEP              # Beep when accessing non-existent history.
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 #
-# mise
+# GPG KEY
 #
-eval "$(~/.local/bin/mise activate zsh)"
+export GPG_TTY=$(tty)
 
-#
-# kubectl
-#
-#source <(kubectl completion zsh)
-#
-# function _fzf_kubectl_pod_describe() {
-#   local selection=`kubectl get pods -A | fzf --header-lines=1 --query="$*" --select-1 -e `
-#   if [ $selection = "" ]; then
-#     return 0
-#   fi
-#
-#   local namespace=`echo $selection | awk '{ print $1 }'`
-#   local pod=`echo $selection | awk '{ print $2 }'`
-#
-#   print -z "kubectl describe pod ${pod} -n ${namespace}"
-# }
-#
-# alias kcdpod=_fzf_kubectl_pod_describe
+. "$HOME/.config/zdotdir/.zsh_dev"

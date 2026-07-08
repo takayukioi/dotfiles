@@ -1,0 +1,42 @@
+# 
+# pnpm
+# 
+export PNPM_HOME="$HOME/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+#
+# cargo
+#
+. "$HOME/.cargo/env"
+
+#
+# mise
+#
+eval "$(/opt/homebrew/bin/mise activate zsh)"
+
+#
+# Claude
+#
+export PATH="$HOME/.local/bin:$PATH"
+
+#
+# kubectl
+#
+#source <(kubectl completion zsh)
+#
+# function _fzf_kubectl_pod_describe() {
+#   local selection=`kubectl get pods -A | fzf --header-lines=1 --query="$*" --select-1 -e `
+#   if [ $selection = "" ]; then
+#     return 0
+#   fi
+#
+#   local namespace=`echo $selection | awk '{ print $1 }'`
+#   local pod=`echo $selection | awk '{ print $2 }'`
+#
+#   print -z "kubectl describe pod ${pod} -n ${namespace}"
+# }
+#
+# alias kcdpod=_fzf_kubectl_pod_describe
